@@ -912,20 +912,22 @@ hr {
 }
 
 .nav-linkovi{
-	margin: 20px 0px;
+    margin: 20px -30px;
+    width: calc(100% + 60px);
+    height: calc(100% - 193px);
+    overflow-y: scroll;
 }
 
 .sidebar-nav-link{
-	border: 0px;
-	display: block;
-	width: calc(100% + 60px);
-	margin: 0px -30px;
-	padding: 20px;
-	text-align: left;
-	background: #fbfbfb;
-	text-transform: uppercase;
-	font-weight: 600;
-	border-bottom: 1px solid #eaeaea;
+    border: 0px;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    text-align: left;
+    background: #fbfbfb;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid #eaeaea;
     color: #1c1c1c;
 }
 
