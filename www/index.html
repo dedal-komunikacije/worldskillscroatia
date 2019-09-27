@@ -1,209 +1,133 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
-
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
-    <!-- Good default declaration:
-    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-        * Enable inline JS: add 'unsafe-inline' to default-src
-        * Enable eval(): add 'unsafe-eval' to default-src
-    * Create your own at http://cspisawesome.com
-    -->
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
-    <title>DANI STRUKOVNIH NASTAVNIKA</title>
-    <meta name="description" content="DANI STRUKOVNIH NASTAVNIKA">
-    <meta name="author" content="Dedal Komunikacije">
-    <link rel="stylesheet" href="./font/OpenSans/OpenSans.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<title>DANI STRUKOVNIH NASTAVNIKA</title>
+	<meta name="description" content="DANI STRUKOVNIH NASTAVNIKA">
+	<meta name="author" content="Dedal Komunikacije">
+	<link rel="stylesheet" href="./font/OpenSans/OpenSans.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
-    <div class="app">
-        <div class="header">
-            <div class="header-ikona" data-id="nav">
-                <div class="nav_icons">
-                    <div class="bar first_bar"></div>
-                    <div class="bar second_bar"></div>
-                    <div class="bar third_bar"></div>
-                </div>
-            </div>
-            <h1>WorldSkills Croatia 2019.</h1>
-        </div>
-        <div id="home">
-            <div class="grid-container">
-                <div class="grid-item item-7 border nav-link item-nove-obavijesti" data-id="obavijesti">
-                    <div class="obavijest-wrap">
-                        <h3 class="nove-obavijesti-naslov">Najnovije obavijesti <span class="broj-obavijesti"></span></h3>
-                        <h5 class="naslov-obavijesti">Trenutno nemate nepročitanih obavijesti</h5>
-                        <p class="datum-obavijesti"></p>
-                        <p class="tekst-obavijesti"></p>
-                    </div>
-                </div>
-                <div class="grid-item item-7 border nav-link item-obavijesti" data-id="obavijesti">
-                    <div class="obavijesti-background"></div>
-                    <img src="./img/obavijesti.png" alt="Obavijesti" class="img-responsive ikona-obavijesti">
-                    <p class="slika-obavijesti-opis">Obavijesti</p>
-                </div>
-                <!-- <div class="grid-item border nav-link" data-id="informacije">
-                        <img src="./img/informacije.svg" alt="ikona" class="menu-icon-pic">
-                        <p class="menu-txt">Informacije</p>
-                    </div> -->
-                <div class="grid-item border nav-link" data-id="program">
-                    <img src="./img/program.png" alt="ikona" class="menu-icon-pic">
-                    <p class="menu-txt">Predavanja</p>
-                </div>
-                <div class="grid-item border nav-link" data-id="raspored">
-                    <img src="./img/raspored.png" alt="ikona" class="menu-icon-pic">
-                    <p class="menu-txt">Raspored</p>
-                </div>
-                <!-- <div class="grid-item border nav-link" data-id="predavanja">
-                        <img src="./img/predavanja.svg" alt="ikona" class="menu-icon-pic">
-                        <p class="menu-txt">Predavanja</p>
-                    </div> -->
-                <div class="grid-item border nav-link" data-id="predavaci">
-                    <img src="./img/predavaci.png" alt="ikona" class="menu-icon-pic">
-                    <p class="menu-txt">Sudionici</p>
-                </div>
-                <div class="grid-item border nav-link" data-id="mapa">
-                    <img src="./img/mapa.png" alt="ikona" class="menu-icon-pic">
-                    <p class="menu-txt">Mapa</p>
-                </div>
-            </div>
-            <div class="logotipi-footer footer-home">
-                <img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-                <img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
-                <img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
-            </div>
-        </div>
-        <div id="sadrzaj" class="sadrzaj">
-            <div class="sadrzaj-inner"></div>
-        </div>
-        <div class="predavac-sidebar"></div>
-        <div class="nav-overlay"></div>
-        <div class="nav-sidebar">
-            <img src="./img/worldskills-logo.png" alt="Izvrsnost i znanje zaslužuju priznanje"
-             class="img-responsive logo-nav">
-            <div class="nav-linkovi">
-                <button class="sidebar-nav-link nav-link" data-id="o_projektu">
-                    <div class="nav-ikona"><i class="fas fa-book"></i></div>
-                    <div class="nav-tekst">O projektu</div>
-                </button>
-                <button class="sidebar-nav-link nav-link" data-id="informacije">
-                    <div class="nav-ikona"><i class="fas fa-info-circle"></i></div>
-                    <div class="nav-tekst">O WorldSkills Croatia 2019.</div>
-                </button>
-                <button class="sidebar-nav-link nav-link" data-id="skole">
-                    <div class="nav-ikona"><i class="fas fa-school"></i></div>
-                    <div class="nav-tekst">Škole domaćini</div>
-                </button>
-                <button class="sidebar-nav-link nav-link" data-id="partneri">
-                    <div class="nav-ikona"><i class="fas fa-hands-helping"></i></div>
-                    <div class="nav-tekst">Partneri</div>
-                </button>
-                <button class="sidebar-nav-link nav-link" data-id="hoteli">
-                    <div class="nav-ikona"><i class="fas fa-hotel"></i></div>
-                    <div class="nav-tekst">Popis hotela</div>
-                </button>
-                <button class="sidebar-nav-link nav-link" data-id="autobusi">
-                    <div class="nav-ikona"><i class="fas fa-bus"></i></div>
-                    <div class="nav-tekst">Autobusne linije</div>
-                </button>
-                <!-- <button class="sidebar-nav-link nav-link" data-id="eventa">
-                    <div class="nav-ikona"><img src="./img/eventa.svg" alt="Eventa Lite" class="img-responsive nav-ikona-img"></div>
-                    <div class="nav-tekst">Eventa lite</div>
-                </button> -->
-            </div>
-            <button class="zatvori-nav" id="zatvori-nav">ZATVORI</button>
-        </div>
-    </div>
+	<div class="header">
+		<div class="header-ikona" data-id="nav">
+			<div class="nav_icons">
+				<div class="bar first_bar"></div>
+				<div class="bar second_bar"></div>
+				<div class="bar third_bar"></div>
+			</div>
+		</div>
+		<h1>Dani strukovnih nastavnika</h1>
+	</div>
+	<div id="home">
+		<div class="grid-container">
+			<div class="grid-item item-7 border nav-link item-nove-obavijesti" data-id="obavijesti">
+				<div class="obavijest-wrap">
+					<h3 class="nove-obavijesti-naslov">Najnovije obavijesti <span class="broj-obavijesti"></span></h3>
+					<h5 class="naslov-obavijesti">Trenutno nemate nepročitanih obavijesti</h5>
+					<p class="datum-obavijesti"></p>
+					<p class="tekst-obavijesti"></p>
+				</div>
+			</div>
+			<div class="grid-item item-7 border nav-link item-obavijesti" data-id="obavijesti">
+				<img src="./img/ikona-pismo.svg" alt="Obavijesti" class="img-responsive ikona-obavijesti">
+				<p class="slika-obavijesti-opis">Obavijesti</p>
+			</div>
+			<!-- <div class="grid-item border nav-link" data-id="informacije">
+					<img src="./img/informacije.svg" alt="ikona" class="menu-icon-pic">
+					<p class="menu-txt">Informacije</p>
+				</div> -->
+			<div class="grid-item border nav-link" data-id="program">
+				<img src="./img/program.svg" alt="ikona" class="menu-icon-pic">
+				<p class="menu-txt">Program</p>
+			</div>
+			<div class="grid-item border nav-link" data-id="raspored">
+				<img src="./img/raspored.svg" alt="ikona" class="menu-icon-pic">
+				<p class="menu-txt">Raspored</p>
+			</div>
+			<!-- <div class="grid-item border nav-link" data-id="predavanja">
+					<img src="./img/predavanja.svg" alt="ikona" class="menu-icon-pic">
+					<p class="menu-txt">Predavanja</p>
+				</div> -->
+			<div class="grid-item border nav-link" data-id="predavaci">
+				<img src="./img/predavaci.svg" alt="ikona" class="menu-icon-pic">
+				<p class="menu-txt">Predavači</p>
+			</div>
+			<div class="grid-item border nav-link" data-id="mapa">
+				<img src="./img/mapa.svg" alt="ikona" class="menu-icon-pic">
+				<p class="menu-txt">Mapa</p>
+			</div>
+		</div>
+		<div class="logotipi-footer footer-home">
+			<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
+			<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
+		</div>
+	</div>
+	<div id="sadrzaj" class="sadrzaj">
+		<div class="sadrzaj-inner"></div>
+	</div>
+	<div class="predavac-sidebar"></div>
+	<div class="nav-overlay"></div>
+	<div class="nav-sidebar">
+		<img src="./img/modernizacija-logo.png" alt="Modernizacija sustava stručnog osposobljavanja nastavnika strukovnih predmeta"
+		 class="img-responsive logo-nav">
+		<div class="nav-linkovi">
+			<button class="sidebar-nav-link nav-link" data-id="o_projektu">
+				<div class="nav-ikona"><i class="fas fa-book"></i></div>
+				<div class="nav-tekst">O projektu</div>
+			</button>
+			<button class="sidebar-nav-link nav-link" data-id="informacije">
+				<div class="nav-ikona"><i class="fas fa-info-circle"></i></div>
+				<div class="nav-tekst">O Danima strukovnih nastavnika 2019.</div>
+			</button>
+		</div>
+		<button class="zatvori-nav" id="zatvori-nav">ZATVORI</button>
+	</div>
 	<div class="templejti" style="display: none;">
 		<div id="templejt-informacije">
 			<div class="informacije-wrap">
 				<div class="logo-informacije">
-					<img src="./img/worldskills-logo.png" alt="Izvrsnost i znanje zaslužuju priznanje logo" class="img-responsive informacije-logo">
+					<img src="./img/asoo-logo.png" alt="ASOO logo" class="img-responsive informacije-logo">
 				</div>
-				<div class="informacije-sekcija mb-10">
-					<h5 class="informacije-naslov">O WSC</h5>
+				<div class="informacije-sekcija">
 					<p class="informacije-tekst">
-						Od 27. – 28. ožujka 2019. godine na Zagrebačkom velesajmu Agencija za strukovno obrazovanje i obrazovanja odraslih organizira Državno natjecanje učenika strukovnih škola - WorldSkills Croatia 2019., najveće strukovno natjecanje u ovom dijelu Europe. Više od 450 najboljih učenika strukovnih škola natjecat će se u 42 discipline u kojima će prezentirati stručne kompetencija te demonstrirati vještine potrebne za uspješno obavljanje zadataka karakterističnih za određeno strukovno zanimanje, a skoro 100 učenika će izlagati svoje radove na smotrama. Novi, osuvremenjeni koncept strukovnih natjecanja usklađen je sa standardima svjetskih i europskih natjecanja mladih u vještinama (Euroskills i Worldskills) te sličnim događanjima u drugim zemljama.
-					</p>
-					<p class="informacije tekst">
-						U brojne discipline uključili smo poslodavce koji u svojoj djelatnosti koriste tehnologiju, proizvode ili pružaju usluge povezane s tom disciplinom te zapošljavaju učenike koji su završili srodne strukovne škole. Sudjelovanje predstavnika gospodarstva jedan je i od načina da se postigne dugoročni cilj osiguranje povećanja zapošljivosti učenika koji su sudjelovali na natjecanjima te demonstrirali svoje vještine mogućim budućim poslodavcima. U događanje je Agencija uključila i druge institucije (HZZ, HOK, itd.) i visoka učilišta. 
-					</p>
-					<p class="informacije tekst">
-						Jedna od glavnih svrha novoga modela natjecanja je promocija i popularizacija strukovnog obrazovanja te poticanje učenika završnih razreda osnovnih škola na upis u strukovne škole. Agencija organizira dolazak više od 60 autobusa iz cijele HR učenika osnovnih škola. Posjetom državnom natjecanju WorldSkills Croatia učenici će dobiti priliku vidjeti koje mogućnosti pruža strukovno obrazovanje, osobno se uvjeriti u atraktivnost strukovnih zanimanja i izvrsnost koju mogu dobiti u strukovnim školama. Dobit će i niz prilika za dodatno informiranje jer će imati na raspolaganju niz radionica i savjetovanja s predstavnicima HZZ-a.:
+						Agencija za strukovno obrazovanje i obrazovanje odraslih, <strong>od 9. do 11. listopada 2019. godine u Šibeniku</strong>,
+						organizira <strong>„3. dane strukovnih nastavnika“</strong>.
 					</p>
 				</div>
 				<div class="informacije-sekcija">
-					<h5 class="informacije-naslov">Događanje u brojkama</h5>
-					<ul>
-						<li>2 dana</li>
-						<li>43 discipline</li>
-						<li>
-							Oko 2000 sudionika
-							<ul>
-								<li>580 natjecatelja i sudionika smotri</li>
-								<li>450 mentora</li>
-								<li>600 nastavnika i učenika volontera</li>
-								<li>220 članova prosudbenih povjerenstava</li>
-							</ul>
-						</li>
-						<li>6 paviljona i 15.000 m2</li>
-						<li>Više od 10.000 posjetitelja</li>
-						<li>Više od 20 partnera/sponzora</li>
-						<li>Škole, poslodavci, visoka učilišta</li>
-						<li>mediji</li>
-					</ul>
+					<h5 class="informacije-naslov">Sudionici</h5>
+					<p class="informacije-tekst">
+						Ovo događanje osmišljeno je i predviđeno za nastavnike strukovnih predmeta iz ustanova za strukovno obrazovanje, a koji nisu sudjelovali na 1. i 2. Danima strukovnih nastavnika.
+					</p>
+					<p class="informacije-tekst">
+						Za svaki obrazovni strukovni sektor predviđen je broj mjesta koji je određen prema broju ustanova za strukovno obrazovanje koje nude strukovne programe iz tog sektora. Također, predviđen je i određen broj mjesta na rezervnoj listi za svaki obrazovni sektor.
+					</p>
+					<p class="informacije-tekst">
+						Prijave za sudjelovanje moguće su dok ima slobodnih mjesta na glavnoj i rezervnoj listi. Nakon što se popune slobodna i rezervna mjesta prijave više neće biti moguće.
+					</p>
 				</div>
 				<div class="informacije-sekcija">
 					<h5 class="informacije-naslov">Trošak smještaja i prehrane</h5>
 					<p class="informacije-tekst">
-						Troškovi smještaja i prehrane za sve sudionike bit će pokriveni iz ESF projekta Agencije "Modernizacija sustava
-						stručnog usavršavanja nastavnika strukovnih predmeta".
+						Troškovi smještaja i prehrane za sve sudionike bit će pokriveni iz ESF projekta Agencije „Modernizacija sustava stručnog usavršavanja nastavnika strukovnih predmeta“.
 					</p>
 					<p class="informacije-tekst">
-						Smještaj će biti organiziran u jednokrevetnim sobama u dva hotela (****) u sklopu "Amadria park" hotela (Solaris)
-						u Šibeniku. Raspored sudionika po sobama vršiti će hotel prilikom prijava sudionika na recepciji.
+						Smještaj će biti organiziran u jednokrevetnim sobama u tri hotela (****) u sklopu „Amadria park“ hotela (Solaris) u Šibeniku. Raspored sudionika po sobama vršit će hotel prilikom prijava sudionika na recepciji.
 					</p>
 				</div>
 				<div class="informacije-sekcija">
 					<h5 class="informacije-naslov">Putni troškovi</h5>
 					<p class="informacije-tekst">
-						Agencija za strukovno obrazovanje i obrazovanje odraslih pokriti će troškove organiziranog autobusnog prijevoza
-						iz 12 gradova za sudionike koji prilikom prijave odaberu takvu mogućnost:
+						Agencija za strukovno obrazovanje i obrazovanje odraslih pokriti će troškove organiziranog autobusnog prijevoza za sudionike koji prilikom prijave odaberu takvu mogućnost:
 					</p>
 					<ul class="informacije-lista">
 						<li>Osijek - Slavonski brod</li>
 						<li>Bjelovar - Varaždin</li>
-						<li>Zagreb - Karlovac (2 autobusa)</li>
+						<li>Zagreb - Karlovac</li>
 						<li>Pula - Pazin - Rijeka</li>
 						<li>Zadar</li>
 						<li>Split</li>
@@ -212,80 +136,39 @@
 				</div>
 				<div class="logotipi-footer logotipi-informacije">
 					<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-					<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
 					<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
 				</div>
 			</div>
 		</div>
 		<div id="templejt-mapa">
-			<!-- <div class="mape-append"></div> -->
-			<div class="mape-append">
-				<div class="program-datum kutija raspored-datum collapse-btn" data-id="hotel-1" data-akcija="prikazi">Paviljon 8 - 8a</div>
-				<div class="raspored-dan-wrap collapse-elem" data-id="hotel-1">
-					<div class="dvorana-slika">
-						<img src="./img/dvorane/8.jpg" class="img-responsive img-dvorana">
-					</div>
-				</div>
-				<div class="program-datum kutija raspored-datum collapse-btn" data-id="hotel-2" data-akcija="prikazi">Paviljon 9 - 11a</div>
-				<div class="raspored-dan-wrap collapse-elem" data-id="hotel-2">
-					<div class="dvorana-slika">
-						<img src="./img/dvorane/9-11.jpg" class="img-responsive img-dvorana">
-					</div>
-				</div>
-				<div class="program-datum kutija raspored-datum collapse-btn" data-id="hotel-3" data-akcija="prikazi">Paviljon 11b - 11c - 11d</div>
-				<div class="raspored-dan-wrap collapse-elem" data-id="hotel-3">
-					<div class="dvorana-slika">
-						<img src="./img/dvorane/11.jpg" class="img-responsive img-dvorana">
-					</div>
-				</div>
-				<div class="program-datum kutija raspored-datum collapse-btn" data-id="hotel-4" data-akcija="prikazi">Paviljon 10a - Restoran Gastro Globus - Kongresna dvorana</div>
-				<div class="raspored-dan-wrap collapse-elem" data-id="hotel-4">
-					<div class="dvorana-slika">
-						<img src="./img/dvorane/10.jpg" class="img-responsive img-dvorana">
-					</div>
-				</div>
-			</div>
-			<!-- <img src="./img/dvorane/tlocrt.jpg" alt="" class="img-responsive"> -->
+			<div class="mape-append"></div>
 		</div>
 		<div id="templejt-o_projektu">
 			<div class="o-projektu">
 				<div class="informacije-wrap">
 					<div class="logo-informacije">
-						<img src="./img/izvrsnost-logo.png" alt="WorldSkills logo" class="img-responsive o-projektu-logo">
-					</div>
-					<div class="informacije-sekcija">
-						<h3 class="informacije-podnaslov">
-							Promocija učeničkih kompetencija i strukovnog obrazovanja kroz strukovna natjecanja i smotre
-						</h3>
+						<img src="./img/modernizacija-logo.png" alt="ASOO logo" class="img-responsive o-projektu-logo">
 					</div>
 					<div class="informacije-sekcija">
 						<p class="informacije-tekst">
-							Korisnik: Agencija za strukovno obrazovanje i obrazovanje odraslih (ASOO)<br/>
-							Ukupna vrijednost projekta: 40.919.843,34 HRK<br/>
-							EU financiranje: 34.781.866,84 HRK<br/>
-							Razdoblje provedbe: siječanj 2017. - siječanj 2022.
+							Projekt "Modernizacija sustava stručnog usavršavanja nastavnika strukovnih predmeta" sufinanciran je iz Europskog socijalnog fonda, a nositelj je Agencija za strukovno obrazovanje i obrazovanje odraslih. Vrijednost ovog projekta iznosi ukupno 11.828.218,80 HRK, od čega se 85% sufinancira iz Europskog socijalnog fonda, a 15% iz nacionalnih sredstava. <br>
+							Projekt se financira u okviru Poziva tijelima za dostavu prijedloga operacija koje će se financirati kao izravna dodjela sredstava u okviru Prioritetne osi 3 „Obrazovanje i cjeloživotno učenje“, Operativnog programa „Učinkoviti ljudski potencijali“ 2014.-2020.“, kojeg je objavilo Ministarstvo rada i mirovinskog sustava. Projekt traje do prosinca 2019. godine.
 						</p>
 					</div>
-					<div class="informacije-sekcija mb-10">
+					<div class="informacije-sekcija">
 						<p class="informacije-tekst">
-							Cilj projekta je promocija važnosti učeničkih kompetencija i strukovnih zanimanja unapređenjem postojećeg sustava strukovnih natjecanja i jačanjem kompetencija djelatnika škola i učenika uz sudjelovanje u moderniziranom sustavu natjecanja i smotri na nacionalnoj i međunarodnoj razini.
+							Projekt će omogućiti značajan pomak i razvoj inovativnog, otvorenog i fleksibilnog sustava stručnog usavršavanja strukovnih nastavnika utemeljenog na istraženim potrebama, relevantnim sadržajima, modernim metodama izvođenja, suvremenim IT alatima i rješenjima, sa širokom mrežom stručnjaka, a strukovnim nastavnicima kao ciljnoj skupini će se osigurati bolja podrška i kvalitetnije mogućnosti za jačanje nastavničkih kompetencija i tako podići kvaliteta poučavanja i učeničkih postignuća te kapacitet za provedbu reformi u strukovnom obrazovanju.
 						</p>
+					</div>
+					<div class="informacije-sekcija">
 						<p class="informacije-tekst">
-							Strukovna natjecanja prepoznata su na nacionalnoj, europskoj i svjetskoj razini kao važan mehanizam promocije izvrsnosti i privlačnosti strukovnog obrazovanja. Projekt "Promocija učeničkih kompetencija i strukovnog obrazovanja kroz strukovna natjecanja i smotre" odgovorit će na uočene izazove u sustavu strukovnog obrazovanja u Hrvatskoj, poput niske društvene percepcije kvalitete i relevantnosti strukovnih programa, te ujedno osigurati financijsku podršku za potrebnu modernizaciju nacionalnih strukovnih učeničkih natjecanja, povećano sudjelovanje hrvatskih predstavnika na međunarodnim natjecanjima vještina, te podizanje ugleda strukovnog obrazovanja kroz sustavnu stratešku promociju putem natjecanja.
-						</p>
-						<p class="informacije-tekst">
-							U svojoj početnoj fazi projekt je pružio podršku prethodnom modelu natjecanja. Na temelju analize prethodnog modela strukovnih natjecanja i smotri, Agencija je kroz projekt osmislila novi model državnih natjecanja uz izradu pripadajućih pravila, tehničkih opisa i modela zadataka. Kroz projekt će pružiti podrška sudjelovanju hrvatskih timova na prestižnim međunarodnim natjecanjima EuroSkills i WorldSkills.
-						</p>
-						<p class="informacije-tekst">
-							Novi model nacionalnih strukovnih natjecanja će omogućiti prezentaciju učeničkih znanja, vještina i sposobnosti, profesionalno usmjeravanje učenika te predstavljanje poslodavcima praktičnih vještina koje su učenici usvojili tijekom obrazovanja. 
-						</p>
-						<p class="informacije-tekst">
-							Kao glavne ciljne skupine projekta su učenici, nastavnici i ravnatelji srednjih strukovnih škola će ojačati svoje kompetencije za provedbu i sudjelovanje u nacionalnim i međunarodnim natjecanjima i smotrama, poslodavci će imati priliku povezati se sa strukovnim školama, učenici će se motivirati za stjecanje novih vještina i vlastito usavršavanje, dok će državni prvaci i sudionici međunarodnih natjecanja promicati izvrsnost u strukovnom obrazovanju.
+							Ciljna skupina projekta je odgojno-obrazovno osoblje u strukovnim obrazovnim ustanovama (2500). Ovaj projekt direktno odgovara na prioritete i mjere Programa razvoja sustava strukovnog obrazovanja i osposobljavanja 2016. – 2020. (Prioritet 2, Cilj 2.2, Mjera 2.5.) kao i Strategije obrazovanja, znanosti i tehnologije (4. cilj).<br>
+							Identificirane potrebe ciljne skupine su neadekvatno inicijalno obrazovanje, nedostatak znanja u generičkim temama (podučavanje u sustavu orijentiranom na ishode učenja, radu u višejezičnoj sredini/ili s učenicima s teškoćama, osiguravanje kvalitete), nedostatan odziv nastavnika na ponuđena stručna usavršavanja te ograničena ponuda kvalitetnih suvremenih programa osposobljavanja. Unaprjeđenjem sustava strukovnog obrazovanja kroz ovaj projekt ciljnoj će se skupini u svrhu profesionalizacije nastavničke struke, jačanja kapaciteta nastavnika i podizanja njihovog društvenog ugleda omogućiti rješavanje navedenih potreba kroz slijedeće aktivnosti: povećanje broj nastavnika koji sudjeluju u procesima stručnog usavršavanja; osiguranje veće dostupnosti i relevantnost sadržaja i materijala stručnog usavršavanja što će rezultirati unapređenjem kvalitete usavršavanja; usklađivanje nacionalnih prioriteta i provedba usavršavanja temeljenog na potrebama nastavnika/škole; definiranje dugoročnih ciljeva stručnog usavršavanja; osiguranje mehanizama i mjera za jačanje nastavničkih kompetencija i motivacije za profesionalni razvoj; izrada cjelovite strategije stručnog usavršavanja te unaprjeđenje sustava napredovanja nastavnika.
+								
 						</p>
 					</div>
 					<div class="logotipi-footer logotipi-informacije">
 						<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-						<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
 						<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
 					</div>
 				</div>
@@ -295,7 +178,6 @@
 			<div class="obavijesti-append"></div>
 			<div class="logotipi-footer">
 				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
 				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
 			</div>
 		</div>
@@ -303,7 +185,6 @@
 			<div class="predavaci-append"></div>
 			<div class="logotipi-footer">
 				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
 				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
 			</div>
 		</div>
@@ -311,7 +192,6 @@
 			<div class="program-append"></div>
 			<div class="logotipi-footer">
 				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
 				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
 			</div>
 		</div>
@@ -319,151 +199,23 @@
 			<div class="raspored-append"></div>
 			<div class="logotipi-footer">
 				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
 				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
 			</div>
 		</div>
-		<div id="templejt-skole">
-			<div class="skole-append"></div>
-			<div class="logotipi-footer">
-				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
-			</div>
-		</div>
-		<div id="templejt-partneri">
-			<div class="partneri-append"></div>
-			<div class="logotipi-footer">
-				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
-			</div>
-		</div>
-		<div id="templejt-hoteli">
-			<div class="autobusi-wrap">
-				<div class="skola">
-					<div class="skola-naslov">1. Garden Hill 4*</div>
-					<div class="disciplina-naslov">Rakarska ul. 1A, 10410, Velika Gorica</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">2. Pleso 3*</div>
-					<div class="disciplina-naslov">Mikulčićeva ul. 7A, 10410, Velika Gorica</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">3. Admiral 4*</div>
-					<div class="disciplina-naslov">Rudeška cesta 140, 10 000 Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">4. Holiday 3*</div>
-					<div class="disciplina-naslov">Jankomir 27, 10090 Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">5. Panorama 4</div>
-					<div class="disciplina-naslov">Trg Krešimira Ćosića 9, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">6. Jadran 3*</div>
-					<div class="disciplina-naslov">Vlaška 50, 10000 Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">7. Orient Express 3*</div>
-					<div class="disciplina-naslov">Trnjanska cesta 11E, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">8. Laguna 3*</div>
-					<div class="disciplina-naslov">Kranjčevićeva ul. 29, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">9. Europa 3*</div>
-					<div class="disciplina-naslov">Zagrebačka cesta 191, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">10. Sliško 3*</div>
-					<div class="disciplina-naslov">Ivana Bunica Vucica 7, 10 000 Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">11. Integralni hotel Zagreb</div>
-					<div class="disciplina-naslov">Savska cesta 179, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">12. Livris 4*</div>
-					<div class="disciplina-naslov">Rapska Ul. 12, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">13. Best Western Hotel Stella 3*</div>
-					<div class="disciplina-naslov">Maslenička 1, 10010 Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">14. Sheraton</div>
-					<div class="disciplina-naslov">Ul. kneza Borne 2, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">15. Westin </div>
-					<div class="disciplina-naslov">Ul. Izidora Kršnjavog 1, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">16. Hotel I</div>
-					<div class="disciplina-naslov">Ul. Ive Robića 2, 10000, Zagreb</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">17. Hostel Arena</div>
-					<div class="disciplina-naslov">Remetinečki gaj 28, 10 000 Zagreb</div>
-				</div>
-			</div>
-		</div>
-		<div id="templejt-autobusi">
-			<div class="linije-wrap">
-				<div class="skola">
-					<div class="skola-naslov">Linija 1:</div>
-					<div class="disciplina-naslov">Integralni Hotel & Hostel– Admiral hotel – Hotel Europe – Holiday</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">Linija 2:</div>
-					<div class="disciplina-naslov">Hotel I – Hostel Arena</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">Linija 3:</div>
-					<div class="disciplina-naslov">Hotel Garden Hill – Hotel Pleso</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">Linija 4:</div>
-					<div class="disciplina-naslov">Livris Hotel - Hotel Sliško – Hotel Orient Express</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">Linija 5:</div>
-					<div class="disciplina-naslov">Sheraton Zagreb – Hotel Jadran</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">Linija 6:</div>
-					<div class="disciplina-naslov">Westin Zagreb – Hotel Laguna</div>
-				</div>
-				<div class="skola">
-					<div class="skola-naslov">Linija 7:</div>
-					<div class="disciplina-naslov">Hotel Panorama</div>
-				</div>
-			</div>
-			<div class="logotipi-footer">
-				<img src="./img/eu-fond-1.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/worldskills-logo.png" alt="eu-fond" class="img-responsive img-fond">
-				<img src="./img/asoo-logo.png" alt="eu-fond" class="img-responsive img-fond">
-			</div>
-		</div>
-		<!-- <div id="templejt-eventa">
+		<!--
+		<div id="templejt-eventa">
 			<iframe src="http://eventa-app.net/admin/klijent.html" style="width:100%; height:100%;"></iframe>
-		</div> -->
+		</div>-->
 	</div>
 	<div class="loading-window" style="display: block;">
 		<img src="./img/loading.svg">
 	</div>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="./js/fontawesome-all.js"></script>
-    <script type="text/javascript" src="js/moduli.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
+	<script src="./js/jquery.min.js"></script>
+	<script src="./js/fontawesome-all.js"></script>
+	<script src="./js/moduli.js"></script>
+	<script src="./js/index.js"></script>
+	<!-- <script src="./dist/moduli.bb88791d.js"></script>
+	<script src="./dist/js.9beeb401.js"></script> -->
 </body>
 
 </html>

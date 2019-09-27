@@ -1,1 +1,1020 @@
-function _objectSpread(t){for(var a=1;a<arguments.length;a++){var n=null!=arguments[a]?arguments[a]:{},i=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(i=i.concat(Object.getOwnPropertySymbols(n).filter(function(a){return Object.getOwnPropertyDescriptor(n,a).enumerable}))),i.forEach(function(a){_defineProperty(t,a,n[a])})}return t}function _defineProperty(a,t,n){return t in a?Object.defineProperty(a,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):a[t]=n,a}var poDisciplinama,server="https://dedal-api.appspot.com/",projekt="dani-nastavnika",editPredavanje=-1,editObavijest=-1,editRadionicu=-1,editPredavaca=-1,aktivnaStranica="",predavanjaDatum={},rasporedDatum={},Predavanje=function(a,t){function n(){return t.naslovPredavanja}function i(){return t.datumPredavanja}function r(){return t.predavac}function e(){return t.pocetakPredavanja+" - "+t.krajPredavanja}function r(){return t.imePredavaca}function c(){return t.dvoranaPredavanja}return{getId:function(){return Number(a)},getNaslov:n,getPredavac:r,getVrijeme:e,getVrijemePocetka:function(){return t.pocetakPredavanja},getVrijemeKraja:function(){return t.krajPredavanja},getDvorana:c,getDatum:i,getDatumPocetka:function(){return formatirajDatum(new Date(i()))},setSadrzaj:function(a){t=_objectSpread({},a)},constructSingle:function(){return'\n            <div class="raspored-stavka">\n                <div class="raspored-vrijeme">'.concat(e(),'</div>\n                <div class="raspored-naslov">').concat(n(),'</div>\n                <div class="raspored-predavac">').concat(r(),'</div>\n                <div class="raspored-dvorana">').concat(c(),"</div>\n            </div>\n        ")}}},raspored=[],Obavijest=function(t,n,i,r){r=new Date(String(r));function e(){return formatirajDatum(r)+" "+formatirajVrijeme(r)}return{getId:function(){return Number(t)},getNaslov:function(){return n},getTekst:function(){return i.replace(/\n/g,"<br/>")},getShortTekst:function(){var a=i.substring(0,200);return a=a.replace(/<[^>]*>/g,""),a+="..."},getDatumKreiranja:e,getLijepiDatum:function(){var a;switch(Number(r.getMonth())+1){case 1:a="sij";break;case 2:a="velj";break;case 3:a="ožu";break;case 4:a="tra";break;case 5:a="svi";break;case 6:a="lip";break;case 7:a="srp";break;case 8:a="kol";break;case 9:a="ruj";break;case 10:a="lis";break;case 11:a="stu";break;case 12:a="pro"}return vratiSNulom(r.getDate())+" "+a+" "+formatirajVrijeme(r)},construct:function(){var a='\n            <tr data-id="'.concat(t,'">\n                <td class="td-kreirano">').concat(e(),'</td>\n                <td class="td-naslov">').concat(n,'</td>\n                <td class="td-tekst">').concat(i,'</td>\n                <td class="td-uredi"><button type="button" onClick="urediObavijest(').concat(t,');"  class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>\n                <td class="td-obrisi"><button type="button" onClick="obrisiObavijest(').concat(t,');" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>\n            </tr>\n        ');return $(a)},constructSingle:function(){return'\n            <div class="obavijest" data-id="'.concat(t,'">\n                <h5 class="naslov-obavijesti">').concat(n,'</h5>\n                <p class="datum-obavijesti">').concat(this.getLijepiDatum(),'</p>\n                <p class="tekst-obavijesti">').concat(this.getShortTekst(),"</p>\n                ").concat(200<i.length?'<button class="vise-button" data-id="'+t+'" data-akcija="vise">POGLEDAJ VIŠE</button>':"","\n            </div>\n        ")},setNaslov:function(a){n=a},setTekst:function(a){i=a}}},novosti=[],Stavka=function(a,t){function n(){return t.naslovAktivnosti}function i(){return t.datumAktivnosti}function r(){return t.nositeljAktivnosti}function e(){return t.dvoranaAktivnosti}return{getId:function(){return Number(a)},getNaslov:n,getDatum:i,getDatumPocetka:function(){return formatirajDatum(new Date(i()))},getVrijemePocetka:function(){return t.pocetakAktivnosti},getVrijemeKraja:function(){return t.krajAktivnosti},getNositelj:r,getDvorana:e,setSadrzaj:function(a){t=_objectSpread({},a)},constructSingle:function(){return'\n            <div class="raspored-stavka">\n                <div class="raspored-dvorana">'.concat(e(),'</div>\n                <div class="raspored-vrijeme">').concat(t.pocetakAktivnosti+" - "+t.krajAktivnosti,'</div>\n                <div class="raspored-naslov">').concat(n(),'</div>\n                <div class="raspored-predavac">').concat(r(),"</div>\n            </div>\n        ")}}},predavanja=[],Predavac=function(i,t,n,a,r,e){i=i,t=t,n=n;var c=[];if(Array.isArray(a))for(var o in a)c.push(Number(a[o]));else c.push(Number(a));r=r,e=e;function s(){return t+" "+n}function d(){var a=[];for(var t in predavanja)c.includes(predavanja[t].getId())&&a.push(predavanja[t].getNaslov());return a.toString().replace(",",", ")}function v(){var a=[];for(var t in predavanja)c.includes(predavanja[t].getId())&&a.push(predavanja[t]);return a}function u(){return'<img src="../img/predavaci/'.concat(""!=r?r:"default-image.jpg",'" alt="').concat(t,'" class="img-responsive predavac-img-tablica"/>')}function l(){var a=e.substring(0,200);return a=a.replace(/<[^>]*>/g,""),a+="..."}return{getId:function(){return Number(i)},getIme:function(){return t},getPrezime:function(){return n},getImePrezime:s,getPredavanjaString:d,getPredavanjaArray:v,getSlika:u,getSlikaUrl:function(){return r},getZivotopis:function(){return e},getShortZivotopis:l,setIme:function(a){t=a},setPrezime:function(a){n=a},setPredavanja:function(a){Array.isArray(a)?c=a:(c=[]).push(Number(a))},setSlika:function(a){r=a},setZivotopis:function(a){e=a},construct:function(){var a='\n            <tr data-id="'.concat(i,'">\n                <td class="td-ime">').concat(s(),'</td>\n                <td class="td-slika">').concat(u(),'</td>\n                <td class="td-predavanja">').concat(d(),'</td>\n                <td class="td-opis">').concat(l(),'</td>\n                <td class="td-uredi"><button type="button" onClick="urediPredavaca(').concat(i,');" class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>\n                <td class="td-obrisi"><button type="button" onClick="obrisiPredavaca(').concat(i,');" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>\n            </tr>\n        ');return $(a)},constructSingle:function(){var a=v(),t="";for(var n in a)t+='\n                <div class="predavanja-stavka">\n                    <div class="predavanja-naslov">'.concat(a[n].getNaslov(),'</div>\n                    <div class="raspored-dvorana predavanja-dvorana">').concat(a[n].getDvorana(),'</div>\n                    <div class="raspored-vrijeme predavanje-vrijeme">').concat(a[n].getVrijemePocetka()," - ").concat(a[n].getVrijemeKraja(),"</div>\n                </div>\n            ");return'\n            <div class="program-datum kutija predavac-grupa collapse-btn" data-id="predavac-'.concat(i,'" data-akcija="prikazi">').concat(s(),'</div>\n            <div class="predavac-grupa-wrap collapse-elem" data-id="predavac-').concat(i,'">\n                <div class="predavac-wrap">\n                    <div class="predavac-slika">').concat(u(),'</div>\n                    <div class="predavac-ime">').concat(s(),'</div>\n                    <div class="predavac-opis">').concat(e,'</div>\n                    <div class="predavac-predavanja-naslov">Predavanja</div>\n                    ').concat(t,"\n                </div>\n            </div>\n        ")},constructSidebar:function(){var a=v(),t="";for(var n in a)t+='\n                <div class="predavanja-stavka">\n                    <div class="predavanja-naslov">'.concat(a[n].getNaslov(),'</div>\n                    <div class="raspored-dvorana predavanja-dvorana">').concat(a[n].getDvorana(),'</div>\n                    <div class="raspored-vrijeme predavanje-vrijeme">').concat(a[n].getVrijemePocetka()," - ").concat(a[n].getVrijemeKraja(),"</div>\n                </div>\n            ");return'\n            <div class="predavac-sidebar">\n                <div class="sidebar-slika">'.concat(u(),'</div>\n                <div class="predavac-ime sidebar-ime">').concat(s(),'</div>\n                <div class="sidebar-zivotopis">').concat(e,'</div>\n                <div class="sidebar-predavanja">\n                    <div class="predavac-predavanja-naslov">Predavanja</div>\n                    <div class="sidebar-predavanja-wrap">').concat(t,"</div>\n                </div>\n            </div>\n        ")}}},predavaci=[],Hotel=function(i,a,r){i=i,a=a,r=r;return{getId:function(){return i},getNaslov:function(){return a},constructSingle:function(){var a=0,t="";for(var n in r)t+='\n                <div class="program-datum kutija raspored-sektor collapse-btn" data-id="dvorana-'.concat(a,"-").concat(i,'" data-akcija="prikazi">').concat(r[n].naslov,'</div>\n                <div class="raspored-sektor-wrap collapse-elem" data-id="dvorana-').concat(a,"-").concat(i,'">\n                    <div class="dvorana-slika">\n                        <h3 class="dvorana-kat">').concat(r[n].kat,'</h2>\n                        <img src="./img/dvorane/').concat(r[n].slika,'" class="img-responsive img-dvorana">\n                    </div>\n                </div>\n            '),a++;return t}}},hoteli=[];hoteli.push(new Hotel(0,"Convention centre Šibenik",[{naslov:"Dvorane 1 - 2",slika:"1-2.png",kat:"Prizemlje"},{naslov:"Dvorane 3 - 6",slika:"3-6.png",kat:"Razina -1"},{naslov:"Dvorane 7 - 9",slika:"7-9.png",kat:"1. kat"},{naslov:"Dvorane 10 - 11",slika:"10-11.png",kat:"Mezzanine 0/-1"}])),hoteli.push(new Hotel(1,"Hotel Ivan",[{naslov:"Žirje",slika:"Ivan.png",kat:"Prizemlje"},{naslov:"Lavsa",slika:"Ivan.png",kat:"Prizemlje"}])),hoteli.push(new Hotel(2,"Hotel Jure",[{naslov:"Event room Jure",slika:"Jure.png",kat:"Prizemlje"}])),hoteli.push(new Hotel(3,"Hotel Niko",[{naslov:"Krka I",slika:"Niko.png",kat:"Prizemlje"},{naslov:"Krka II",slika:"Niko.png",kat:"Prizemlje"},{naslov:"Krka II",slika:"Niko.png",kat:"Prizemlje"}]));var Disciplina=function(t,n){function i(){return n.disciplinaNaziv}function r(){return n.disciplinaOpis}return{getId:function(){return Number(t)},getNaziv:i,getOpis:r,setSadrzaj:function(a){n=_objectSpread({},a)},construct:function(){var a='\n            <tr data-id="'.concat(t,'">\n                <td class="td-naziv">').concat(i(),'</td>\n                <td class="td-opis">').concat(r(),'</td>\n                <td class="td-uredi"><button type="button" onClick="urediDisciplinu(').concat(t,');" class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>\n                <td class="td-obrisi"><button type="button" onClick="obrisiDisciplinu(').concat(t,');" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>\n            </tr>\n        ');return $(a)}}},discipline=[],Mentor=function(t,n){var i=[];function r(){return n.mentorImePrezime}function e(){return n.mentorSkola}function c(){return n.mentorZivotopis}return{getId:function(){return Number(t)},getImePrezime:r,getZivotopis:c,getUcenici:function(){return i},getSkola:e,setSadrzaj:function(a){n=_objectSpread({},a)},addUcenik:function(a){i.push(a)},construct:function(){var a='\n            <tr data-id="'.concat(t,'">\n                <td class="td-naziv">').concat(r(),'</td>\n                <td class="td-zivotopis">').concat(c(),'</td>\n                <td class="td-skola">').concat(e(),'</td>\n                <td class="td-uredi"><button type="button" onClick="urediMentora(').concat(t,');" class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>\n                <td class="td-obrisi"><button type="button" onClick="obrisiMentora(').concat(t,');" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>\n            </tr>\n        ');return $(a)}}},mentori=[],Ucenik=function(t,n){var a=nadiElement(mentori,n.idMentora),i=nadiElement(discipline,n.ucenikDisciplina);function r(){return n.ucenikImePrezime}function e(){return n.ucenikSkola}function c(){return a}function o(){return i}return{getId:function(){return Number(t)},getImePrezime:r,getSkola:e,getMentor:c,getMentorId:function(){return n.idMentora},getDisciplina:o,setSadrzaj:function(a){n=_objectSpread({},a)},obrisiMentora:function(){n.idMentora="",a=""},construct:function(){var a='\n            <tr data-id="'.concat(t,'">\n                <td class="td-naziv">').concat(r(),'</td>\n                <td class="td-mentor">').concat(""==c()||void 0===c()?"":c().getImePrezime(),'</td>\n                <td class="td-skola">').concat(e(),'</td>\n                <td class="td-disciplina">').concat(o().getNaziv(),'</td>\n                <td class="td-uredi"><button type="button" onClick="urediUcenika(').concat(t,');" class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>\n                <td class="td-obrisi"><button type="button" onClick="obrisiUcenika(').concat(t,');" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>\n            </tr>\n        ');return $(a)},constructSingle:function(){return'\n            <div class="ucenik-wrap">\n                <h3 class="ucenik-ime">'.concat(r(),'</h3>\n                <h3 class="mentor-ime">Mentor: <span class="mentor">').concat(void 0===c()||""==c()?"":c().getImePrezime(),"</h3>\n            </div>\n        ")}}},ucenici=[],templateStranice={},Stranica=function(t,n,i){t=t,n=n;var r=r;i=i;return{getId:function(){return t},getNaziv:function(){return n},getHtml:function(){if(""==r)return r;if(templateStranice.hasOwnProperty(t))return templateStranice[t];var a=$("#templejt-".concat(t)).html();return templateStranice[t]=a},ucitajStranicu:function(){var a=this.getHtml();aktivnaStranica=t,$("#sadrzaj").html(a),$(".header h1").html(n),$("#sadrzaj").addClass("active"),"eventa"==aktivnaStranica?$(".header").addClass("sivo"):$(".header").addClass("plavo"),$(".nav_icons").addClass("aktiv-nav"),$(".header-ikona").attr("data-id","back"),$(".nav-sidebar").hasClass("active")&&($(".nav-sidebar").removeClass("active"),$(".nav-overlay").removeClass("active")),void 0!==i&&i()}}},stranice={};function otvoriObavijesti(){if(""!=neprocitaneNovosti)for(var a in $(".obavijest-wrap").html(pocetniHTMLNovosti),neprocitaneNovosti){null==user&&(user={}),user.hasOwnProperty("novosti")||(user.novosti=[]),user.novosti.push(neprocitaneNovosti[a]);var t=JSON.stringify(user);sejvajLokalno("dani-nastavnika",t)}var n="";for(var i in novosti)n+=novosti[i].constructSingle();$(".obavijesti-append").html(n)}function otvoriProgram(){var a="",t=0;for(var n in rasporedDatum){for(var i in a+='\n            <div class="program-datum kutija program-datum collapse-btn" data-id="program-datum-'.concat(t,'" data-akcija="prikazi">').concat(n,'</div>\n            <div class="raspored-dan-wrap collapse-elem" data-id="program-datum-').concat(t,'">\n        '),rasporedDatum[n])a+=rasporedDatum[n][i].constructSingle();a+="</div>",t++}$(".program-append").html(a)}function otvoriRaspored(){var a="",t=0;for(var n in predavanjaDatum){for(var i in a+='\n            <div class="program-datum kutija raspored-datum collapse-btn" data-id="datum-'.concat(t,'" data-akcija="prikazi">').concat(n,'</div>\n            <div class="raspored-dan-wrap collapse-elem" data-id="datum-').concat(t,'">\n        '),predavanjaDatum[n])a+=predavanjaDatum[n][i].constructSingle();a+="</div>",t++}$(".raspored-append").html(a)}function otvoriPredavace(){var a,t="",n=0,i={};for(var r in predavaci)n%5==0&&(i["naziv-"+(a=n)]={},i["naziv-"+a].prvi=predavaci[r].getPrezime().substring(0,3),t+='\n                <div class="program-datum kutija predavaci-grupa collapse-btn" data-id="predavaci-'.concat(n,'" data-akcija="prikazi">{{naziv-').concat(a,'}}</div>\n                <div class="predavaci-grupa-wrap collapse-elem" data-id="predavaci-').concat(n,'">\n            ')),t+=predavaci[r].constructSingle(),++n%5!=0&&void 0!==predavaci[Number(r)+1]||(t+="</div>",i["naziv-"+a].drugi=predavaci[r].getPrezime().substring(0,3));for(var e in i)t=t.replace("{{"+e+"}}",i[e].prvi+" - "+i[e].drugi);$(".predavaci-append").html(t)}function otvoriPredavaceWS(){if(void 0===poDisciplinama){for(var a in poDisciplinama=[],discipline)for(var t in poDisciplinama.push({naziv:discipline[a].getNaziv(),id:discipline[a].getId(),ucenici:[]}),ucenici)ucenici[t].getDisciplina().getId()==discipline[a].getId()&&poDisciplinama[poDisciplinama.length-1].ucenici.push(ucenici[t]);poDisciplinama.sort(function(a,t){var n=a.naziv.toLowerCase().replace(/č/g,"c").replace(/ć/g,"c").replace(/đ/g,"d").replace(/š/g,"s").replace(/ž/g,"z"),i=t.naziv.toLowerCase().replace(/č/g,"c").replace(/ć/g,"c").replace(/đ/g,"d").replace(/š/g,"s").replace(/ž/g,"z");return i<n?1:n<i?-1:0})}var n="";for(var i in poDisciplinama){for(var r in n+='\n            <div class="program-datum kutija disciplina-box collapse-btn" data-id="disciplina-'.concat(i,'" data-akcija="prikazi">').concat(poDisciplinama[i].naziv,'</div>\n            <div class="disciplina-wrap collapse-elem" data-id="disciplina-').concat(i,'">\n        '),poDisciplinama[i].ucenici)n+=poDisciplinama[i].ucenici[r].constructSingle();n+="</div>"}$(".predavaci-append").html(n)}function otvoriMape(){var a="";for(var t in hoteli)a+='\n            <div class="program-datum kutija raspored-datum collapse-btn" data-id="hotel-'.concat(hoteli[t].getId(),'" data-akcija="prikazi">').concat(hoteli[t].getNaslov(),'</div>\n            <div class="raspored-dan-wrap collapse-elem" data-id="hotel-').concat(hoteli[t].getId(),'">\n        '),a+=hoteli[t].constructSingle(),a+="</div>";$(".mape-append").html(a)}function vratiSNulom(a){return a<10?"0"+String(a):String(a)}function formatirajDatum(a){return vratiSNulom(a.getDate())+"."+vratiSNulom(Number(a.getMonth())+1)+"."}function formatirajVrijeme(a){return vratiSNulom(a.getHours())+":"+vratiSNulom(a.getMinutes())}function nadiElement(a,t){var n;for(var i in a)if(a[i].getId()==t){n=a[i];break}return n}stranice.obavijesti=new Stranica("obavijesti","Obavijesti",function(){return otvoriObavijesti()}),stranice.informacije=new Stranica("informacije","Informacije"),stranice.program=new Stranica("program","Predavanja",function(){return otvoriProgram()}),stranice.raspored=new Stranica("raspored","Raspored",function(){return otvoriRaspored()}),stranice.predavaci=new Stranica("predavaci","Sudionici",function(){return otvoriPredavaceWS()}),stranice.mapa=new Stranica("mapa","Mapa"),stranice.eventa=new Stranica("eventa","Eventa"),stranice.o_projektu=new Stranica("o_projektu","O projektu"),stranice.skole=new Stranica("skole","Škole"),stranice.partneri=new Stranica("partneri","Partneri"),stranice.hoteli=new Stranica("hoteli","Popis hotela"),stranice.autobusi=new Stranica("autobusi","Autobusne linije");
+//#region GLOBALNE VARIJABLE
+//var server = 'http://localhost:8080/'; // lokalno
+var server = 'https://dedal-api.appspot.com/'; // na gCloudu
+var projekt = 'dani-nastavnika';
+var editPredavanje = -1;
+var editObavijest = -1;
+var editRadionicu = -1;
+var editPredavaca = -1;
+var aktivnaStranica = "";
+var predavanjaSektori = {};
+//#endregion
+
+//#region Modul raspored
+var Predavanje = function(id, naslov, predavac, pocetak, kraj, poredak){
+    var id = id;
+    var naslov = naslov;
+    var predavac = predavac;
+    var pocetakTekst = pocetak;
+    var krajTekst = kraj;
+    var poredak = poredak;
+    var pocetak = (pocetakTekst == "" ? "" : new Date(String(pocetakTekst)));
+    var kraj = (krajTekst == "" ? "" : new Date(String(krajTekst)));
+
+    function getId(){
+        return Number(id);
+    }
+    function getNaslov(){
+        return naslov;
+    }
+    function getPredavac(){
+        return predavac;
+    }
+    function getDatumPocetka(){
+        return (pocetak == "" ? "-" : formatirajDatum(pocetak));
+    }
+    function getDatumKraja(){
+        return (kraj == "" ? "-" : formatirajDatum(kraj));
+    }
+    function getVrijemePocetka(){
+        return (pocetak == "" ? "-" : formatirajVrijeme(pocetak));
+    }
+    function getVrijemeKraja(){
+        return (kraj == "" ? "-" : formatirajVrijeme(kraj));
+    }
+    function getTekstualniPocetak(){
+        if(pocetak == ""){
+            return pocetak;
+        }else{
+            return pocetak.getFullYear() + "/" + vratiSNulom(Number(pocetak.getMonth()) + 1) + "/" + vratiSNulom(pocetak.getDate()) + " " + formatirajVrijeme(pocetak);
+        }
+    }
+    function getTekstualniKraj(){
+        if(kraj == ""){
+            return kraj;
+        }else{
+            return kraj.getFullYear() + "/" + vratiSNulom(Number(kraj.getMonth()) + 1) + "/" + vratiSNulom(kraj.getDate()) + " " + formatirajVrijeme(kraj);
+        }
+    }
+    function getPoredak(){
+        return poredak;
+    }
+
+    function setNaslov(novo){
+        naslov = novo;
+    }
+    function setPredavac(novo){
+        predavac = novo;
+    }
+    function setPocetak(novo){
+        pocetakTekst = novo;
+        pocetak = (pocetakTekst == "" ? "" : new Date(String(pocetakTekst)));
+    }
+    function setKraj(novo){
+        krajTekst = novo;
+        kraj = (krajTekst == "" ? "" : new Date(String(krajTekst)));
+    }
+    function setPoredak(novo){
+        poredak = novo;
+    }
+    
+    function construct(){
+        var template = `
+            <tr data-id="${id}">
+                <td class="td-poredak">${poredak}.</td>
+                <td class="td-datum">${getDatumPocetka()}</td>
+                <td class="td-pocetak">${getVrijemePocetka()}</td>
+                <td class="td-kraj">${getVrijemeKraja()}</td>
+                <td class="td-naslov">${naslov}</td>
+                <td class="td-predavac">${predavac}</td>
+                <td class="td-uredi"><button type="button" onClick="urediPredavanje(${id});"  class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>
+                <td class="td-obrisi"><button type="button" onClick="obrisiPredavanje(${id});" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>
+            </tr>
+        `;
+        return $(template);
+    }
+
+    function constructSingle(){
+        var template = `
+            <div class="raspored-stavka">
+                <div class="raspored-vrijeme">${getVrijemePocetka()}${(getVrijemeKraja() != "-" ? " - " + getVrijemeKraja() : "")}</div>
+                <div class="raspored-naslov">${naslov}</div>
+                <div class="raspored-predavac">${predavac}</div>
+            </div>
+        `;
+        return template;
+    }
+
+    return {
+        getId: getId,
+        getNaslov: getNaslov,
+        getPredavac: getPredavac,
+        getDatumPocetka: getDatumPocetka,
+        getDatumKraja: getDatumKraja,
+        getVrijemePocetka: getVrijemePocetka,
+        getVrijemeKraja: getVrijemeKraja,
+        getTekstualniPocetak: getTekstualniPocetak,
+        getTekstualniKraj: getTekstualniKraj,
+        getPoredak: getPoredak,
+        construct: construct,
+        constructSingle: constructSingle,
+        setNaslov: setNaslov,
+        setPredavac: setPredavac,
+        setPocetak: setPocetak,
+        setKraj: setKraj,
+        setPoredak: setPoredak
+    }
+}
+var raspored = [];
+//#endregion
+
+//#region Modul novosti
+var Obavijest = function(id, naslov, tekst, kreirano){
+    var id = id;
+    var naslov = naslov;
+    var tekst = tekst;
+    var kreiranoTekst = kreirano;
+    var kreirano = new Date(String(kreiranoTekst));    
+
+    function getId(){
+        return Number(id);
+    }
+    function getNaslov(){
+        return naslov;
+    }
+    function getTekst(){
+        return tekst;
+    }
+    function getShortTekst(){
+        var shortTekst = tekst.substring(0,200);
+        shortTekst = shortTekst.replace(/<[^>]*>/g, '');
+        shortTekst = shortTekst + "...";
+        return shortTekst;
+    }
+    function getDatumKreiranja(){
+        return formatirajDatum(kreirano) + " " + formatirajVrijeme(kreirano);
+    }
+
+    function getLijepiDatum(){
+        var mjesec = Number(kreirano.getMonth()) + 1;
+
+        var tekstMjesec;
+        switch (mjesec) {
+            case 1:
+                tekstMjesec = "sij";
+                break;
+            case 2:
+                tekstMjesec = "velj";
+                break;
+            case 3:
+                tekstMjesec = "ožu";
+                break;
+            case 4:
+                tekstMjesec = "tra";
+                break;
+            case 5:
+                tekstMjesec = "svi";
+                break;
+            case 6:
+                tekstMjesec = "lip";
+                break;
+            case 7:
+                tekstMjesec = "srp";    
+                break;
+            case 8:
+                tekstMjesec = "kol";
+                break;
+            case 9:
+                tekstMjesec = "ruj";
+                break;
+            case 10:
+                tekstMjesec = "lis";
+                break;
+            case 11:
+                tekstMjesec = "stu";
+                break;
+            case 12:
+                tekstMjesec = "pro";
+                break;
+            default:
+                break;
+        }
+        return vratiSNulom(kreirano.getDate()) + " " + tekstMjesec + " " + formatirajVrijeme(kreirano);
+    }
+
+    function setNaslov(novo){
+        naslov = novo;
+    }
+    function setTekst(novo){
+        tekst = novo;
+    }
+    
+    function construct(){
+        var template = `
+            <tr data-id="${id}">
+                <td class="td-kreirano">${getDatumKreiranja()}</td>
+                <td class="td-naslov">${naslov}</td>
+                <td class="td-tekst">${tekst}</td>
+                <td class="td-uredi"><button type="button" onClick="urediObavijest(${id});"  class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>
+                <td class="td-obrisi"><button type="button" onClick="obrisiObavijest(${id});" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>
+            </tr>
+        `;
+        return $(template);
+    }
+
+    function constructSingle(){
+        var template = `
+            <div class="obavijest" data-id="${id}">
+                <h5 class="naslov-obavijesti">${naslov}</h5>
+                <p class="datum-obavijesti">${this.getLijepiDatum()}</p>
+                <p class="tekst-obavijesti">${this.getShortTekst()}</p>
+                ${tekst.length > 200 ? '<button class="vise-button" data-id="' + id + '" data-akcija="vise">POGLEDAJ VIŠE</button>' : '' }
+            </div>
+        `;
+        return template;
+    }
+
+    return {
+        getId: getId,
+        getNaslov: getNaslov,
+        getTekst: getTekst,
+        getShortTekst: getShortTekst,
+        getDatumKreiranja: getDatumKreiranja,
+        getLijepiDatum: getLijepiDatum,
+        construct: construct,
+        constructSingle: constructSingle,
+        setNaslov: setNaslov,
+        setTekst: setTekst
+    }
+}
+var novosti = [];
+//#endregion
+
+//#region Modul predavanja
+var Radionica = function(id, naslov, idPredavaca, pocetak, kraj, sazetak, dvorana, sektor, upisId){
+    var id = id;
+    var naslov = naslov;
+    var predavaciArray = [];
+    if(Array.isArray(idPredavaca)){
+        for(let i in idPredavaca){
+            predavaciArray.push(Number(idPredavaca[i]));
+        }
+    }else{
+        predavaciArray.push(Number(idPredavaca));
+    }    
+    
+    var pocetakTekst = pocetak;
+    var krajTekst = kraj;
+    var pocetak = (pocetakTekst == "" ? "" : new Date(String(pocetakTekst)));
+    var kraj = (krajTekst == "" ? "" : new Date(String(krajTekst)));
+    var sazetak = sazetak;
+    var dvorana = dvorana;
+    var sektor = sektor;
+    var upisId = upisId;
+
+    var dvorane = [
+        "Hall Šibenik I",
+        "Hall Šibenik II",
+        "Hall Šibenik III",
+        "Hall Šibenik IV",
+        "Hall Šibenik V",
+        "Hall Šibenik VI",
+        "Hall Šibenik VII",
+        "Hall Šibenik VIII",
+        "Hall Šibenik IX",
+        "Hall Šibenik X",
+        "Hall Šibenik XI",
+        "Žirje",
+        "Lavsa"
+    ];
+    var sektori = [
+        "Poljoprivreda, prehrana i veterina",
+        "Šumarstvo, prerada i obrada drva",
+        "Geologija, rudarstvo, nafta i kemijska tehnologija",
+        "Tekstil i koža",
+        "Grafička tehnologija i audio-vizualna tehnologija",
+        "Strojarstvo, brodogradnja i metalurgija",
+        "Elektrotehnika i računarstvo",
+        "Graditeljstvo i geodezija",
+        "Ekonomija, trgovina i poslovna administracija",
+        "Turizam i ugostiteljstvo",
+        "Promet i logistika",
+        "Zdravstvo i socijalna skrb",
+        "Osobne, usluge zaštite i druge usluge"
+    ];
+
+    function getId(){
+        return Number(id);
+    }
+    function getNaslov(){
+        return naslov;
+    }
+    function getPredavac(){
+        var pred = [];    
+        for(let i in predavaci){            
+            if(predavaciArray.includes(predavaci[i].getId())){
+                pred.push(predavaci[i].getImePrezime());
+            }
+        }
+        return pred.toString().replace(",", ", ");
+    }
+    function getPredavaciArray(){
+        var pred = [];
+        for(let i in predavaci){
+            if(predavaciArray.includes(predavaci[i].getId())){
+                pred.push(predavaci[i]);
+            }
+        }
+        return pred;
+    }
+    function getDatumPocetka(){
+        return (pocetak == "" ? "-" : formatirajDatum(pocetak));
+    }
+    function getDatumKraja(){
+        return (kraj == "" ? "-" : formatirajDatum(kraj));
+    }
+    function getVrijemePocetka(){
+        return (pocetak == "" ? "-" : formatirajVrijeme(pocetak));
+    }
+    function getVrijemeKraja(){
+        return (kraj == "" ? "-" : formatirajVrijeme(kraj));
+    }
+    function getTekstualniPocetak(){
+        if(pocetak == ""){
+            return pocetak;
+        }else{
+            return pocetak.getFullYear() + "/" + vratiSNulom(Number(pocetak.getMonth()) + 1) + "/" + vratiSNulom(pocetak.getDate()) + " " + formatirajVrijeme(pocetak);
+        }
+    }
+    function getTekstualniKraj(){
+        if(kraj == ""){
+            return kraj;
+        }else{
+            return kraj.getFullYear() + "/" + vratiSNulom(Number(kraj.getMonth()) + 1) + "/" + vratiSNulom(kraj.getDate()) + " " + formatirajVrijeme(kraj);
+        }
+    }
+    function getSazetak(){
+        return sazetak;
+    }
+    function getDvorana(){
+        var dvoranePovrat = [];
+        for(let i in dvorana){
+            dvoranePovrat.push(dvorane[Number(dvorana[i])]);
+        }
+        dvoranePovrat = dvoranePovrat.join(", ");
+        return dvoranePovrat;
+    }
+    function getDvoranaID(){
+        return dvorana;
+    }
+    function getSektor(){
+        if(sektor != ""){
+            return sektori[Number(sektor)];
+        }else{
+            return sektor;
+        }
+    }
+    function getSektorID(){
+        return sektor;
+    }
+    function getUpisId(){
+        return upisId;
+    }
+    function getLijepiDatum(){
+        var mjesec = Number(pocetak.getMonth()) + 1;
+
+        var tekstMjesec;
+        switch (mjesec) {
+            case 1:
+                tekstMjesec = "siječanj";
+                break;
+            case 2:
+                tekstMjesec = "veljača";
+                break;
+            case 3:
+                tekstMjesec = "ožujak";
+                break;
+            case 4:
+                tekstMjesec = "travanj";
+                break;
+            case 5:
+                tekstMjesec = "svibanj";
+                break;
+            case 6:
+                tekstMjesec = "lipanj";
+                break;
+            case 7:
+                tekstMjesec = "srpanj";    
+                break;
+            case 8:
+                tekstMjesec = "kolovoz";
+                break;
+            case 9:
+                tekstMjesec = "rujan";
+                break;
+            case 10:
+                tekstMjesec = "listopad";
+                break;
+            case 11:
+                tekstMjesec = "studeni";
+                break;
+            case 12:
+                tekstMjesec = "prosinac";
+                break;
+            default:
+                break;
+        }
+        return vratiSNulom(pocetak.getDate()) + ". " + tekstMjesec;
+    }
+
+    function setNaslov(novo){
+        naslov = novo;
+    }
+    function setPredavac(novo){
+        predavac = novo;
+    }
+    function setPocetak(novo){
+        pocetakTekst = novo;
+        pocetak = (pocetakTekst == "" ? "" : new Date(String(pocetakTekst)));
+    }
+    function setKraj(novo){
+        krajTekst = novo;
+        kraj = (krajTekst == "" ? "" : new Date(String(krajTekst)));
+    }
+    function setSazetak(novo){
+        sazetak = novo;
+    }
+    function setDvorana(novo){
+        dvorana = novo;
+    }
+    function setSektor(novo){
+        sektor = novo;
+    }
+    
+    function construct(){
+        var template = `
+            <tr data-id="${id}">
+                <td class="td-datum">${getDatumPocetka()}</td>
+                <td class="td-pocetak">${getVrijemePocetka()}</td>
+                <td class="td-kraj">${getVrijemeKraja()}</td>
+                <td class="td-naslov">${naslov}</td>
+                <td class="td-predavac">${getPredavac()}</td>
+                <td class="td-sazetak">${sazetak}</td>
+                <td class="td-dvorana">${getDvorana()}</td>
+                <td class="td-sektor">${getSektor()}</td>
+                 <td class="td-uredi"><button type="button" onClick="urediRadionicu(${id});"  class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>
+                <td class="td-obrisi"><button type="button" onClick="obrisiRadionicu(${id});" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>
+            </tr>
+        `;
+        return $(template);
+    }
+    function constructSingle(){  
+        var predavaciArr = getPredavaciArray();
+        var predavaciString = "";
+        for(let i in predavaciArr){
+            predavaciString += `
+                <a href="javascript:void(0)" data-id="${predavaciArr[i].getId()}" class="predavaci-predavanja-link">${predavaciArr[i].getImePrezime()}</a>
+            `
+        }
+        var template = `
+            <div class="raspored-stavka">
+                <div class="raspored-dvorana">${getDvorana()}</div>
+                <div class="raspored-vrijeme">${getVrijemePocetka()} - ${getVrijemeKraja()}</div>
+                <div class="raspored-naslov">${naslov}</div>
+                <div class="raspored-predavac">${predavaciString}</div>
+            </div>
+        `;
+        return template;
+    }
+
+    return {
+        getId: getId,
+        getNaslov: getNaslov,
+        getPredavac: getPredavac,
+        getPredavaciArray: getPredavaciArray,
+        getDatumPocetka: getDatumPocetka,
+        getDatumKraja: getDatumKraja,
+        getVrijemePocetka: getVrijemePocetka,
+        getVrijemeKraja: getVrijemeKraja,
+        getTekstualniPocetak: getTekstualniPocetak,
+        getTekstualniKraj: getTekstualniKraj,
+        getSazetak: getSazetak,
+        getDvorana: getDvorana,
+        getDvoranaID: getDvoranaID,
+        getSektor: getSektor,
+        getSektorID: getSektorID,
+        getUpisId: getUpisId,
+        getLijepiDatum: getLijepiDatum,
+        construct: construct,
+        constructSingle: constructSingle,
+        setNaslov: setNaslov,
+        setPredavac: setPredavac,
+        setPocetak: setPocetak,
+        setKraj: setKraj,
+        setSazetak: setSazetak,
+        setDvorana: setDvorana,
+        setSektor: setSektor
+    }
+}
+var predavanja = [];
+//#endregion
+
+//#region Modul predavači
+var Predavac = function(id, ime, prezime, predavanjaPredavaca, slika, zivotopis){
+    var id = id;
+    var ime = ime;
+    var prezime = prezime;
+    var predavanjaArray = [];
+    if(!Array.isArray(predavanjaPredavaca)){
+        predavanjaArray.push(Number(predavanjaPredavaca));
+    }else{
+        for(let i in predavanjaPredavaca){
+            predavanjaArray.push(Number(predavanjaPredavaca[i]));
+        }
+    }
+    
+    var slika = slika;
+    var zivotopis = zivotopis;
+
+    function getId(){
+        return Number(id);
+    }
+    function getIme(){
+        return ime;
+    }
+    function getPrezime(){
+        return prezime;
+    }
+    function getImePrezime(){
+        return ime + " " + prezime;
+    }
+    function getPredavanjaString(){
+        var pred = [];
+        for(let i in predavanja){
+            if(predavanjaArray.includes(predavanja[i].getId())){
+                pred.push(predavanja[i].getNaslov());
+            }
+        }
+        return pred.toString().replace(",", ", ");
+    }
+    function getPredavanjaArray(){
+        var pred = [];
+        for(let i in predavanja){
+            if(predavanjaArray.includes(predavanja[i].getId())){
+                pred.push(predavanja[i]);
+            }
+        }
+        return pred;
+    }
+    function getSlika(){
+        var slikaUrl = (slika != "" ? slika : "default-image.jpg");
+        var slikaTemplejt = `<img src="../asoo/img/predavaci/${slikaUrl}" alt="${ime}" class="img-responsive predavac-img-tablica"/>`;
+        return slikaTemplejt;
+    }
+    function getSlikaUrl(){
+        return slika;
+    }
+    function getZivotopis(){
+        return zivotopis;
+    }
+    function getShortZivotopis(){
+        var shortTekst = zivotopis.substring(0,200);
+        shortTekst = shortTekst.replace(/<[^>]*>/g, '');
+        shortTekst = shortTekst + "...";
+        return shortTekst;
+    }
+
+    function setIme(novo){
+        ime = novo;
+    }
+    function setPrezime(novo){
+        prezime = novo;
+    }
+    function setPredavanja(novo){
+        if(!Array.isArray(novo)){
+            predavanjaArray = [];
+            predavanjaArray.push(Number(novo))
+        }else{
+            predavanjaArray = novo;
+        }
+    }
+    function setSlika(novo){
+        slika = novo;
+    }
+    function setZivotopis(novo){
+        zivotopis = novo;
+    }
+    
+    function construct(){
+        var template = `
+            <tr data-id="${id}">
+                <td class="td-ime">${getImePrezime()}</td>
+                <td class="td-slika">${getSlika()}</td>
+                <td class="td-predavanja">${getPredavanjaString()}</td>
+                <td class="td-opis">${getShortZivotopis()}</td>
+                <td class="td-uredi"><button type="button" onClick="urediPredavaca(${id});" class="btn-primary btn-raspored" id="btn-uredi"><i class="fas fa-edit"></i> Uredi</button></td>
+                <td class="td-obrisi"><button type="button" onClick="obrisiPredavaca(${id});" class="btn-primary btn-raspored" id="btn-obriši"><i class="fas fa-trash-alt"></i> Obriši</button></td>
+            </tr>
+        `;
+        return $(template);
+    }
+    function constructSingle(){
+        var predavanjaArr = getPredavanjaArray();
+        var predavanjaString = "";
+        for(let i in predavanjaArr){
+            predavanjaString += `
+                <div class="predavanja-stavka">
+                    <div class="predavanja-naslov">${predavanjaArr[i].getNaslov()}</div>
+                    <div class="raspored-dvorana predavanja-dvorana">${predavanjaArr[i].getDvorana()}</div>
+                    <div class="raspored-vrijeme predavanje-vrijeme">${predavanjaArr[i].getVrijemePocetka()} - ${predavanjaArr[i].getVrijemeKraja()}</div>
+                </div>
+            `;
+        }
+        var template = `
+            <div class="program-datum kutija predavac-grupa collapse-btn" data-id="predavac-${id}" data-akcija="prikazi">${getImePrezime()}</div>
+            <div class="predavac-grupa-wrap collapse-elem" data-id="predavac-${id}">
+                <div class="predavac-wrap">
+                    <div class="predavac-slika">${getSlika()}</div>
+                    <div class="predavac-ime">${getImePrezime()}</div>
+                    <div class="predavac-opis">${zivotopis}</div>
+                    <div class="predavac-predavanja-naslov">Predavanja</div>
+                    ${predavanjaString}
+                </div>
+            </div>
+        `;
+        return template;
+    }
+    function constructSidebar(){
+        var predavanjaArr = getPredavanjaArray();
+        var predavanjaString = "";
+        for(let i in predavanjaArr){
+            predavanjaString += `
+                <div class="predavanja-stavka">
+                    <div class="predavanja-naslov">${predavanjaArr[i].getNaslov()}</div>
+                    <div class="raspored-dvorana predavanja-dvorana">${predavanjaArr[i].getDvorana()}</div>
+                    <div class="raspored-vrijeme predavanje-vrijeme">${predavanjaArr[i].getVrijemePocetka()} - ${predavanjaArr[i].getVrijemeKraja()}</div>
+                </div>
+            `;
+        }
+        var template = `
+            <div class="predavac-sidebar">
+                <div class="sidebar-slika">${getSlika()}</div>
+                <div class="predavac-ime sidebar-ime">${getImePrezime()}</div>
+                <div class="sidebar-zivotopis">${zivotopis}</div>
+                <div class="sidebar-predavanja">
+                    <div class="predavac-predavanja-naslov">Predavanja</div>
+                    <div class="sidebar-predavanja-wrap">${predavanjaString}</div>
+                </div>
+            </div>
+        `;
+        return template;
+    }
+
+    return {
+        getId: getId,
+        getIme: getIme,
+        getPrezime: getPrezime,
+        getImePrezime: getImePrezime,
+        getPredavanjaString: getPredavanjaString,
+        getPredavanjaArray: getPredavanjaArray,
+        getSlika: getSlika,
+        getSlikaUrl: getSlikaUrl,
+        getZivotopis: getZivotopis,
+        getShortZivotopis: getShortZivotopis,
+        setIme: setIme,
+        setPrezime: setPrezime,
+        setPredavanja: setPredavanja,
+        setSlika: setSlika,
+        setZivotopis: setZivotopis,
+        construct: construct,
+        constructSingle: constructSingle,
+        constructSidebar: constructSidebar
+    }
+}
+var predavaci = [];
+//#endregion
+
+//#region Modul hoteli
+var Hotel = function(id, naslov, dvorane){
+    var id = id;
+    var naslov = naslov;
+    var dvorane = dvorane;
+
+    function getId(){
+        return id;
+    }
+    function getNaslov(){
+        return naslov;
+    }
+    function constructSingle(){
+        var brojac = 0;
+        var templejt = "";
+        for(let i in dvorane){
+            templejt += `
+                <div class="program-datum kutija raspored-sektor collapse-btn" data-id="dvorana-${brojac}-${id}" data-akcija="prikazi">${dvorane[i].naslov}</div>
+                <div class="raspored-sektor-wrap collapse-elem" data-id="dvorana-${brojac}-${id}">
+                    <div class="dvorana-slika">
+                        <h3 class="dvorana-kat">${dvorane[i].kat}</h2>
+                        <img src="./img/dvorane/${dvorane[i].slika}" class="img-responsive img-dvorana">
+                    </div>
+                </div>
+            `;
+            brojac++;
+        }
+        return templejt;
+    }
+
+    return {
+        getId: getId,
+        getNaslov: getNaslov,
+        constructSingle: constructSingle
+    }
+}
+var hoteli = [];
+hoteli.push(new Hotel(0, "Convention centre Šibenik", [
+    {
+        "naslov": "Dvorane 1 - 2",
+        "slika": "1-2.png",
+        "kat": "Prizemlje"
+    },
+    {
+        "naslov": "Dvorane 3 - 6",
+        "slika": "3-6.png",
+        "kat": "Razina -1"
+    },
+    {
+        "naslov": "Dvorane 7 - 9",
+        "slika": "7-9.png",
+        "kat": "1. kat"
+    },
+    {
+        "naslov": "Dvorane 10 - 11",
+        "slika": "10-11.png",
+        "kat": "Mezzanine 0/-1"
+    }
+]));
+hoteli.push(new Hotel(1, "Hotel Ivan", [
+    {
+        "naslov": "Žirje",
+        "slika": "Ivan.png",
+        "kat": "Prizemlje"
+    },
+    {
+        "naslov": "Lavsa",
+        "slika": "Ivan.png",
+        "kat": "Prizemlje"
+    }
+]));
+hoteli.push(new Hotel(2, "Hotel Andrija"));
+/*hoteli.push(new Hotel(2, "Hotel Jure", [
+    {
+        "naslov": "Event room Jure",
+        "slika": "Jure.png",
+        "kat": "Prizemlje"
+    }
+]));
+*/
+
+/*
+hoteli.push(new Hotel(3, "Hotel Niko", [
+    {
+        "naslov": "Krka I",
+        "slika": "Niko.png",
+        "kat": "Prizemlje"
+    },
+    {
+        "naslov": "Krka II",
+        "slika": "Niko.png",
+        "kat": "Prizemlje"
+    },
+    {
+        "naslov": "Krka II",
+        "slika": "Niko.png",
+        "kat": "Prizemlje"
+    }
+]));
+ */
+//#endregion
+
+//#region Modul navigacija
+var templateStranice = {};
+var Stranica = function (id, naziv, kolbek) {
+    var id = id;
+    var naziv = naziv;
+    var html = html;
+    var kolbek = kolbek;
+    function getId() {
+        return id;
+    }
+    function getNaziv() {
+        return naziv;
+    }
+    function getHtml() {
+        if (html != "") {
+            if(!templateStranice.hasOwnProperty(id)){
+                var ret = $(`#templejt-${id}`).html();
+                templateStranice[id] = ret;
+                return ret;
+            }else{
+                return templateStranice[id];
+            }
+        } else {
+            return html;
+        }
+    }
+    function ucitajStranicu() {
+        var ucitano = this.getHtml();
+        aktivnaStranica = id;
+        $("#sadrzaj").html(ucitano);
+        $(".header h1").html(naziv);
+        $("#sadrzaj").addClass("active");
+        if(aktivnaStranica == "eventa"){
+            $(".header").addClass("sivo");
+        }else{
+            $(".header").addClass("plavo");
+        }
+        $(".nav_icons").addClass("aktiv-nav");
+        $(".header-ikona").attr("data-id", "back");
+        if($(".nav-sidebar").hasClass("active")){
+            $(".nav-sidebar").removeClass("active");
+            $(".nav-overlay").removeClass("active");
+        }
+        if(typeof(kolbek) != "undefined"){
+            kolbek();
+        }
+    }
+
+    return {
+        getId: getId,
+        getNaziv: getNaziv,
+        getHtml: getHtml,
+        ucitajStranicu: ucitajStranicu
+    }
+}
+
+var stranice = {};
+stranice.obavijesti = new Stranica("obavijesti", "Obavijesti", () => otvoriObavijesti());
+stranice.informacije = new Stranica("informacije", "Informacije");
+stranice.program = new Stranica("program", "Program", () => otvoriProgram());
+stranice.raspored = new Stranica("raspored", "Raspored", () => otvoriRaspored());
+stranice.predavaci = new Stranica("predavaci", "Predavači", () => otvoriPredavace());
+stranice.mapa = new Stranica("mapa", "Mapa", () => otvoriMape());
+stranice.eventa = new Stranica("eventa", "Eventa");
+stranice.o_projektu = new Stranica("o_projektu", "O projektu");
+
+//#region Kolbek funkcije
+function otvoriObavijesti(){
+    if(neprocitaneNovosti != ""){
+        $(".obavijest-wrap").html(pocetniHTMLNovosti);
+        for(let i in neprocitaneNovosti){
+            if(user == null) user = {};
+            if(!user.hasOwnProperty("novosti")) user.novosti = [];
+            user.novosti.push(neprocitaneNovosti[i]);
+            let zaLokalno = JSON.stringify(user);
+            sejvajLokalno("dani-nastavnika", zaLokalno);
+        }
+    }
+    var templejt = "";
+    for(let i in novosti){
+        templejt += novosti[i].constructSingle();
+    }    
+
+    $(".obavijesti-append").html(templejt);
+}
+function otvoriProgram(){
+    var templejt = "";
+    var trenutniDatum = "";
+    for(let i in raspored){
+        if(raspored[i].getDatumPocetka() != trenutniDatum){
+            if(i > 0){
+                templejt += "</div>";
+            }
+            templejt += `
+                <div class="program-datum kutija">${raspored[i].getDatumPocetka()}</div>
+                <div class="raspored-grupa">
+            `;
+            trenutniDatum = raspored[i].getDatumPocetka();
+        }
+        templejt += raspored[i].constructSingle();
+    }    
+
+    $(".program-append").html(templejt);
+}
+function otvoriRaspored(){
+    var templejt = "";
+    var brojacDana = 0;
+    var brojacSektora = 0;
+    for(let i in predavanjaSektori){
+        templejt += `
+            <div class="program-datum kutija raspored-datum collapse-btn" data-id="datum-${brojacDana}" data-akcija="prikazi">${i}</div>
+            <div class="raspored-dan-wrap collapse-elem" data-id="datum-${brojacDana}">
+        `;
+        let danPredavanja = predavanjaSektori[i];
+        for(let j in danPredavanja){
+            if(j != "bezSektora"){
+                templejt += `
+                    <div class="program-datum kutija raspored-sektor collapse-btn" data-id="sektor-${brojacSektora}" data-akcija="prikazi">${j}<br><span class="dvorana-kartica">${danPredavanja[j][1] ? danPredavanja[j][1].getDvorana() : ""}</span></div>
+                    <div class="raspored-sektor-wrap collapse-elem" data-id="sektor-${brojacSektora}">
+                `;
+            }
+            let sektorPredavanja = danPredavanja[j];
+            for(let k in sektorPredavanja){
+                if(j == "bezSektora" && i == "24. listopad"){
+                    templejt += `
+                        <div class="program-datum kutija raspored-sektor collapse-btn" data-id="predavanje-${sektorPredavanja[k].getId()}" data-akcija="prikazi">${sektorPredavanja[k].getNaslov()}<br><span class="dvorana-kartica">${sektorPredavanja[k].getDvorana()}</span></div>
+                        <div class="raspored-sektor-wrap collapse-elem" data-id="predavanje-${sektorPredavanja[k].getId()}">
+                    `;
+                }
+                templejt += sektorPredavanja[k].constructSingle();
+                if(j == "bezSektora" && i == "24. listopad"){
+                    templejt += "</div>";
+                }
+            }
+            if(j != "bezSektora"){
+                templejt += "</div>";
+            }
+            brojacSektora++;
+        }
+        templejt += "</div>";
+        brojacDana++;
+    }    
+
+    $(".raspored-append").html(templejt);
+}
+function otvoriPredavace(){
+    var templejt = "";
+    var brojac = 0;
+    var nazivi = {};
+    var trenutni;
+    for(let i in predavaci){
+        if(brojac % 5 == 0){
+            trenutni = brojac;
+            nazivi["naziv-" + trenutni] = {};
+            nazivi["naziv-" + trenutni].prvi = predavaci[i].getPrezime().substring(0,3);
+            templejt += `
+                <div class="program-datum kutija predavaci-grupa collapse-btn" data-id="predavaci-${brojac}" data-akcija="prikazi">{{naziv-${trenutni}}}</div>
+                <div class="predavaci-grupa-wrap collapse-elem" data-id="predavaci-${brojac}">
+            `;
+        }
+        templejt += predavaci[i].constructSingle();
+        brojac++;
+        if(brojac % 5 == 0 || typeof(predavaci[Number(i) + 1]) == "undefined"){
+            templejt += "</div>";
+            nazivi["naziv-" + trenutni].drugi = predavaci[i].getPrezime().substring(0,3);
+        }
+    }
+    for(let i in nazivi){
+        templejt = templejt.replace("{{"+i+"}}", nazivi[i].prvi + " - " + nazivi[i].drugi);
+    }
+
+    $(".predavaci-append").html(templejt);
+}
+function otvoriMape(){
+    var templejt = "";
+    for(let i in hoteli){
+        templejt += `
+            <div class="program-datum kutija raspored-datum collapse-btn" data-id="hotel-${hoteli[i].getId()}" data-akcija="prikazi">${hoteli[i].getNaslov()}</div>
+            <div class="raspored-dan-wrap collapse-elem" data-id="hotel-${hoteli[i].getId()}">
+        `;
+        templejt += hoteli[i].constructSingle();
+        templejt += "</div>";
+    }
+
+    $(".mape-append").html(templejt);
+}
+//#endregion
+//#endregion
+
+//#region Pomoćne funkcije
+//#region Vrati s nulom
+function vratiSNulom(broj){ // Pošto Date ne vraća datum/mjesec/vrijeme sa početnom nulom, funkcija koja vraća
+    if(broj < 10){
+        return "0" + String(broj);
+    }else{
+        return String(broj);
+    }
+}
+//#endregion
+//#region Formatiraj datum
+function formatirajDatum(datum){
+    return vratiSNulom(datum.getDate()) + "." + vratiSNulom(Number(datum.getMonth()) + 1) + ".";
+}
+//#endregion
+//#region Formatiraj vrijeme
+function formatirajVrijeme(datum){
+    return vratiSNulom(datum.getHours()) + ":" + vratiSNulom(datum.getMinutes());
+}
+//#endregion
+//#region Nađi element
+function nadiElement(modul, id){
+    var ret;
+    for(let i in modul){
+        if(modul[i].getId() == id){
+            ret = modul[i];
+            break;
+        }
+    }
+    return ret;
+}
+//#endregion
+//#endregion

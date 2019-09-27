@@ -5,7 +5,6 @@ html, body {
 	font-weight: 400;
 	overflow-x: hidden;
 	background: #EBEAE9;
-	color: #1c1c1c;
 }
 
 .img-responsive{
@@ -98,7 +97,7 @@ a:hover {
 
 .naslovna .header {
 	height: 60px;
-	background-color: #1c1c1c;
+	background-color: #ED1C24;
 	box-shadow: 0px 1px 4px 0px #909090;
 	transition: 0.3s ease;
 }
@@ -159,19 +158,6 @@ section.naslovna {
 	padding: 18px 0px;
 }
 
-.grid-container .grid-item[data-id=program]{
-	background-color: #ee7c67;
-}
-.grid-container .grid-item[data-id=raspored]{
-	background-color: #64beb2;
-}
-.grid-container .grid-item[data-id=predavaci]{
-	background-color: #06a0d9;
-}
-.grid-container .grid-item[data-id=mapa]{
-	background-color: #416f8e;
-}
-
 .grid-container .item-7 {
 	grid-column: 1/3;
 	position: relative;
@@ -221,10 +207,10 @@ section.naslovna {
 
 .menu-txt {
 	font-size: 14.5px;
-	font-weight: 600;
+	font-weight: 800;
 	text-transform: uppercase;
 	text-align: center;
-	color: #fff;
+	color: #323691;
 	margin: 0px;
 }
 
@@ -293,7 +279,7 @@ section.naslovna {
 
 .header {
 	height: 53px;
-	background-color: #1c1c1c;
+	background-color: #ed1c24;
 	box-shadow: 0px 1px 4px 0px #909090;
 	padding: 7px 10px 0px;
 }
@@ -306,9 +292,9 @@ section.naslovna {
 	vertical-align: -4px;
 }
 
-/* .header.plavo {
-	background-color: #07a0d9;
-} */
+.header.plavo {
+	background-color: #323691;
+}
 
 .header.sivo {
 	background-color: #EBEAE9;
@@ -521,53 +507,33 @@ hr {
 }
 
 .grid-container .item-obavijesti{
-    background-image: url("../img/obavijesti-bg.png");
-    background-position: center -37px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 10px;
-    margin: 5px 0px 10px;
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #828282;
-}
-
-.obavijesti-background{
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: rgba(0, 0, 0, 0.4);
-	z-index: 0;
+	background-image: url('../img/bg-obavijesti.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 10px;
+	margin: 5px 0px 10px;
 }
 
 .item-obavijesti .ikona-obavijesti{
 	margin: 0 auto;
 	width: 85px;
-	position: relative;
-	z-index: 1;
 }
 
 .item-obavijesti .ikona-obavijesti{
 	margin: 0 auto;
 	width: 87px;
-	position: relative;
-	z-index: 1;
 }
 
 .slika-obavijesti-opis{
 	color: #fff;
 	text-transform: uppercase;
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 21px;
 	text-align: center;
 	margin-top: 5px;
 	margin-bottom: 0px;
 	letter-spacing: 1px;
-	position: relative;
-	z-index: 1;
 }
 
 .obavijest{
@@ -580,7 +546,7 @@ hr {
 	border: 0px;
 	padding: 0px;
 	font-size: 18px;
-	color: #ee7c67;
+	color: #323691;
 	font-weight: 600;
 	margin-top: 6px;
 }
@@ -652,7 +618,7 @@ hr {
 
 .raspored-vrijeme{
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 100;
     margin-bottom: 2px;
 }
 
@@ -678,8 +644,7 @@ hr {
 .raspored-naslov{
     font-size: 16px;
     font-weight: 700;
-	margin-bottom: 2px;
-	color: #ee7c67;
+    margin-bottom: 2px;
 }
 
 .raspored-predavac{
@@ -698,14 +663,14 @@ hr {
 
 .raspored-datum, .predavaci-grupa{
 	margin-bottom: 12px;
-	color: #1c1c1c;
+	color: #323691;
 	transition: 0.3s ease;
 }
 
-/* .raspored-datum.collapsed, .predavaci-grupa.collapsed{
+.raspored-datum.collapsed, .predavaci-grupa.collapsed{
 	background: #323691;
 	color: #fff;
-} */
+}
 
 .raspored-datum:first-child, .predavaci-grupa:first-child{
 	margin-top: 10px;
@@ -744,10 +709,10 @@ hr {
 }
 
 .raspored-dvorana{
-	color: #416e8d;
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: 12px;
+	color: #ed1c24;
+	font-weight: 100;
+	text-transform: uppercase;
+	font-size: 12px;
 }
 
 .informacije-sekcija{
@@ -767,10 +732,6 @@ hr {
 	font-size: 16px;
 }
 
-.informacije-sekcija.mb-10 .informacije-tekst{
-	margin-bottom: 10px;
-}
-
 .logo-informacije{
 	margin-bottom: 10px;
 }
@@ -780,21 +741,16 @@ hr {
 }
 
 .logotipi-footer{
-    text-align: center;
-    padding: 30px 15px;
-    border-top: 1px solid #ebeae9;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-	align-content: center;
-	grid-gap: 10px;
+	text-align: center;
+	padding: 30px 0px;
+	border-top: 1px solid #ebeae9;
 }
 
 .logotipi-footer img{
 	display: inline-block;
 	width: 150px;
 	vertical-align: middle;
-	margin: 0px;
+	margin: 0px 7px;
 	opacity: 1;
 }
 
@@ -912,23 +868,21 @@ hr {
 }
 
 .nav-linkovi{
-    margin: 20px -30px;
-    width: calc(100% + 60px);
-    height: calc(100% - 229px);
-    overflow-y: scroll;
+	margin: 20px 0px;
 }
 
 .sidebar-nav-link{
-    border: 0px;
-    display: block;
-    width: 100%;
-    padding: 20px;
-    text-align: left;
-    background: #fbfbfb;
-    text-transform: uppercase;
-    font-weight: 600;
-    border-bottom: 1px solid #eaeaea;
-    color: #1c1c1c;
+	border: 0px;
+	display: block;
+	width: calc(100% + 60px);
+	margin: 0px -30px;
+	padding: 20px;
+	text-align: left;
+	background: #f5f5f5;
+	text-transform: uppercase;
+	font-weight: 600;
+	border-bottom: 1px solid #dcdcdc;
+	color: #323691;
 }
 
 .o-projektu-logo{
@@ -937,7 +891,7 @@ hr {
 }
 
 .sidebar-nav-link:first-child{
-	border-top: 1px solid #eaeaea;
+	border-top: 1px solid #dcdcdc;
 }
 
 .sidebar-nav-link .nav-ikona, .sidebar-nav-link .nav-tekst{
@@ -946,7 +900,7 @@ hr {
 }
 
 .sidebar-nav-link .nav-ikona{
-	color: #1c1c1c;
+	color: #323691;
 	font-size: 20px;
 	margin-right: 8px;
 	width: 23px;
@@ -969,7 +923,7 @@ hr {
 	position: absolute;
 	left: 0px;
 	bottom: 0px;
-	background: #ee7c67;
+	background: #323691;
 }
 
 .dvorana-kat{
@@ -978,10 +932,6 @@ hr {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 0px;
-}
-
-.dvorana-slika{
-	padding: 0px 15px;
 }
 
 .loading-window {
@@ -1007,44 +957,6 @@ hr {
 }
 .loading-window.active{
 	display: block;
-}
-
-.skola{
-	padding: 15px;
-	border-bottom: 1px solid #EAEAE9;
-}
-
-.skola-naslov{
-	color: #ee7c67;
-	font-weight: 700;
-	font-size: 17px;
-}
-
-.disciplina-naslov{
-	color: #416e8d;
-	font-weight: 400;
-	text-transform: uppercase;
-	font-size: 14px;
-}
-
-.ucenik-ime{
-	margin: 0px 0px 5px;
-    color: #ee7c67;
-    font-weight: 700;
-    font-size: 17px;
-}
-
-.mentor-ime{
-	margin: 0px;
-    color: #416e8d;
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-.ucenik-wrap{
-    padding: 15px;
-    border-bottom: 1px solid #EAEAE9;
 }
 
 
